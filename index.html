@@ -77,6 +77,26 @@
       margin: 0 0 14px;
     }
 
+    .announcement {
+      margin: 0 0 14px;
+      border: 1px solid var(--ms-border);
+      background: linear-gradient(90deg, var(--ms-surface-soft), var(--ms-surface));
+      border-radius: 14px;
+      box-shadow: var(--ms-shadow);
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .announcement p {
+      margin: 0;
+      color: var(--ms-text-muted);
+      font-size: 0.92rem;
+    }
+
     .top-banner {
       margin: 0 0 14px;
       border: 1px solid var(--ms-border);
@@ -139,6 +159,22 @@
       margin-bottom: 12px;
     }
 
+    .hero-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .hero-brand .ms-mark {
+      margin-bottom: 0;
+      flex: 0 0 auto;
+    }
+
+    .hero-brand .kicker {
+      margin: 0;
+    }
+
     .ms-mark span:nth-child(1) { background: #f25022; }
     .ms-mark span:nth-child(2) { background: #7fba00; }
     .ms-mark span:nth-child(3) { background: #00a4ef; }
@@ -169,7 +205,11 @@
     .lead {
       margin: 0;
       color: var(--ms-text-muted);
-      max-width: 74ch;
+      max-width: none;
+    }
+
+    .lead-gap {
+      margin-top: 16px;
     }
 
     .controls {
@@ -250,6 +290,8 @@
     .card.type-infrastructure { border-left-color: #005a9e; }
     .card.type-developer { border-left-color: #6b46c1; }
     .card.type-cloud-journey { border-left-color: #2563eb; }
+    .card.type-copilot { border-left-color: #5b21b6; }
+    .card.type-copilot-by-role { border-left-color: #7c3aed; }
 
     .pill-row {
       display: flex;
@@ -341,6 +383,43 @@
       padding: 16px;
     }
 
+    .cta-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .btn {
+      display: inline-block;
+      border-radius: 999px;
+      border: 1px solid var(--ms-brand);
+      background: var(--ms-brand);
+      color: #ffffff;
+      padding: 7px 12px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      text-decoration: none;
+    }
+
+    .btn:hover {
+      background: var(--ms-brand-hover);
+      border-color: var(--ms-brand-hover);
+      text-decoration: none;
+    }
+
+    .btn.secondary {
+      background: var(--ms-surface-soft);
+      color: var(--ms-link);
+      border-color: var(--ms-border-strong);
+    }
+
+    .btn.secondary:hover {
+      background: var(--ms-brand-soft);
+      color: var(--ms-link);
+      border-color: var(--ms-brand);
+    }
+
     .footer {
       margin-top: 20px;
       color: var(--ms-text-soft);
@@ -379,20 +458,32 @@
     </nav>
 
     <section class="hero">
-      <div class="ms-mark" aria-hidden="true">
-        <span></span><span></span><span></span><span></span>
+      <div class="hero-brand">
+        <div class="ms-mark" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <p class="kicker">Microsoft Tribal Nations Webinar Series</p>
       </div>
-      <p class="kicker">Webinar series</p>
-      <h1>Microsoft Webinar Series</h1>
+      <h1>Microsoft Tribal Nations Webinar Series</h1>
       <p class="lead">
-        Discover practical sessions across Modern Work, Data & AI, Security, and Infrastructure —
-        designed for real-world outcomes and easy action after every webinar.
+        Built for Tribal Nations, this series gives leaders, IT teams and staff practical guidance on security, data sovereignty, AI and modernization. Join any session, bring your questions and leave with ideas you can use, at your own pace and on your terms.
       </p>
+      <p class="lead lead-gap">
+        📅 Can't make it live? Register anyway. Register for every session you're interested in, and we'll automatically send you the recording, even if you can't attend.
+      </p>
+      <p class="lead lead-gap">
+        🔒 About the recordings: Recordings are password protected. For access, email <a href="mailto:microsofttribal@microsoft.com" target="_blank" rel="noopener noreferrer">microsofttribal@microsoft.com</a> (opens in new window).
+      </p>
+    </section>
+
+    <section class="announcement" aria-label="Copilot site announcement before sessions">
+      <p>✨ Looking for Microsoft 365 Copilot sessions? Copilot training, prompt tips and adoption resources for Tribal Nations are on our Copilot site.</p>
+      <a class="btn secondary" href="#" title="Add URL">Visit the Copilot site →</a>
     </section>
 
     <section aria-label="Session controls">
       <div class="controls">
-        <input id="search" class="input" type="search" placeholder="Search sessions by title, topic, or speaker">
+        <input id="search" class="input" type="search" placeholder="Search sessions by title or topic">
         <select id="status" class="select" aria-label="Filter by status">
           <option value="all">All sessions</option>
           <option value="upcoming">Upcoming</option>
@@ -420,13 +511,18 @@
     </section>
 
     <section id="suggest-topic" class="suggest" aria-label="Suggest a topic">
-      <h2>What would your audience like you to cover next?</h2>
-      <p class="lead">Collect topic ideas and shape future sessions based on community demand.</p>
-      <p class="lead">Recordings are password protected. Email <strong>MicrosoftTribal@microsoft.com</strong> to request the recording password or suggest a future webinar topic.</p>
+      <h2>Let's keep the conversation going</h2>
+      <p class="lead">Thank you for being part of this series. Every session is shaped by what we hear from Tribal leaders and teams, so your input shapes what comes next.</p>
+      <p class="lead lead-gap">Have a question, or want to go deeper on a topic? We're happy to set up a one-on-one conversation for your Nation. Tell us your priorities and we'll bring the right people.</p>
+      <div class="cta-row">
+        <a class="btn" href="mailto:microsofttribal@microsoft.com" target="_blank" rel="noopener noreferrer">Request a Conversation</a>
+        <a class="btn secondary" href="https://forms.cloud.microsoft/r/CCcGJSMYmF" target="_blank" rel="noopener noreferrer">Suggest a Future Topic</a>
+        <a class="btn secondary" href="https://forms.cloud.microsoft/r/CCcGJSMYmF" target="_blank" rel="noopener noreferrer">Share Feedback</a>
+      </div>
     </section>
 
     <p class="footer">
-      Quick edit: update the <code>SESSIONS</code> list in this file with your real dates, links, and presenters.
+      Microsoft Tribal Nations Webinar Series · Respecting sovereignty and building partnership · Last updated November 2026
     </p>
   </main>
 
@@ -485,7 +581,8 @@
         dateLabel: "Wednesday, December 2, 2026 · 12:00 – 1:00 PM CT",
         dateISO: "2026-12-02T12:00:00-06:00",
         status: "upcoming",
-        description: "Explore how Azure AI Foundry helps teams design, customize, and deploy enterprise-grade generative AI apps and agents with responsible AI controls."
+        description: "Explore how Azure AI Foundry helps teams design, customize, and deploy enterprise-grade generative AI apps and agents with responsible AI controls.",
+        registerUrl: "https://msit.events.teams.microsoft.com/event/msit.dd42657c-69a2-4aae-abee-0ecb6df9e6d4@72f988bf-86f1-41af-91ab-2d7cd011db47"
       },
       {
         title: "Strengthen Your Security Foundation with Zero Trust",
@@ -494,7 +591,8 @@
         dateLabel: "Wednesday, December 9, 2026 · 12:00 – 1:00 PM CT",
         dateISO: "2026-12-09T12:00:00-06:00",
         status: "upcoming",
-        description: "Adopt continuous verification, least-privilege access, and stronger response readiness to protect identities, devices, apps, workloads, and data."
+        description: "Adopt continuous verification, least-privilege access, and stronger response readiness to protect identities, devices, apps, workloads, and data.",
+        registerUrl: "https://msit.events.teams.microsoft.com/event/msit.746737f3-bc09-4bd4-be4a-da101079a1a5@72f988bf-86f1-41af-91ab-2d7cd011db47"
       },
       {
         title: "Manage Anything, Anywhere with Azure Arc",
@@ -503,7 +601,8 @@
         dateLabel: "Wednesday, December 16, 2026 · 12:00 – 1:00 PM CT",
         dateISO: "2026-12-16T12:00:00-06:00",
         status: "upcoming",
-        description: "See how Azure Arc extends Azure governance, operations, and security across hybrid and multicloud environments through one control plane."
+        description: "See how Azure Arc extends Azure governance, operations, and security across hybrid and multicloud environments through one control plane.",
+        registerUrl: "https://msit.events.teams.microsoft.com/event/msit.87fc54e7-b309-4b1a-8fa9-8a5e05ff1b54@72f988bf-86f1-41af-91ab-2d7cd011db47"
       },
       {
         title: "Build Your Azure Foundation with Landing Zones",
@@ -536,6 +635,26 @@
         registerUrl: "https://msit.events.teams.microsoft.com/event/msit.585b08b8-b97e-4192-aefe-2dd133f1842e@72f988bf-86f1-41af-91ab-2d7cd011db47"
       },
       {
+        title: "Driving Copilot Adoption: From Licenses to Lasting Value",
+        type: "Copilot by Role",
+        speakers: "Microsoft",
+        dateLabel: "Wednesday, January 20, 2027 · 11:00 AM – 12:00 PM CT",
+        dateISO: "2027-01-20T11:00:00-06:00",
+        status: "upcoming",
+        description: "Buying Copilot is the easy part — driving the behavior change that turns it into real value is where most organizations struggle. A strong adoption program gets more people using Copilot, more often, for the work that matters. Join us live for a practical playbook to roll out Microsoft 365 Copilot successfully — from readiness and champions to training, use cases, and measuring ROI.",
+        registerUrl: "https://msit.events.teams.microsoft.com/event/msit.98e67cf9-d582-4d9a-accd-b530b76a2f61@72f988bf-86f1-41af-91ab-2d7cd011db47"
+      },
+      {
+        title: "Transform Work with Microsoft 365 Copilot",
+        type: "Copilot",
+        speakers: "Microsoft",
+        dateLabel: "Wednesday, January 20, 2027 · 12:00 – 1:00 PM CT",
+        dateISO: "2027-01-20T12:00:00-06:00",
+        status: "upcoming",
+        description: "Your teams spend hours each week on email, meetings, documents, and searching for information. Microsoft 365 Copilot works inside Word, Excel, PowerPoint, Outlook, and Teams to help them draft, summarize, analyze, and catch up faster. Join us live to see Copilot in action and learn how organizations like yours are putting it to work.",
+        registerUrl: "https://msit.events.teams.microsoft.com/event/msit.0214848c-d2bd-4678-89d1-4b02c80136ea@72f988bf-86f1-41af-91ab-2d7cd011db47"
+      },
+      {
         title: "Accelerate Development with GitHub Copilot",
         type: "Developer",
         speakers: "Microsoft",
@@ -544,6 +663,26 @@
         status: "upcoming",
         description: "Development teams are asked to deliver more with limited time and staff. GitHub Copilot works as an AI pair programmer inside the tools developers already use, helping them write code, understand unfamiliar projects, and handle routine tasks. Join us live to see GitHub Copilot in action and learn how to roll it out across your engineering team.",
         registerUrl: "https://msit.events.teams.microsoft.com/event/msit.e3fdff11-bd2f-4feb-b664-2edfd0e0f379@72f988bf-86f1-41af-91ab-2d7cd011db47"
+      },
+      {
+        title: "Meet Cowork: Agentic AI for Your Team",
+        type: "Agentic AI",
+        speakers: "Microsoft",
+        dateLabel: "Wednesday, February 10, 2027 · 12:00 – 1:00 PM CT",
+        dateISO: "2027-02-10T12:00:00-06:00",
+        status: "upcoming",
+        description: "AI is moving from answering questions to helping complete work. Cowork is an agentic AI experience that can take on multistep tasks, such as researching, drafting documents, and pulling information together from across Microsoft 365. Join us live for a first look at how agentic AI can work alongside your team and what it means for the way your organization gets things done.",
+        registerUrl: "https://msit.events.teams.microsoft.com/event/msit.4da21b20-09c5-42cb-a445-61f703e30978@72f988bf-86f1-41af-91ab-2d7cd011db47"
+      },
+      {
+        title: "FinOps for AI: Predict, Control, and Optimize Your Token Spend",
+        type: "Data & AI",
+        speakers: "Microsoft",
+        dateLabel: "Wednesday, February 17, 2027 · 12:00 – 1:00 PM CT",
+        dateISO: "2027-02-17T12:00:00-06:00",
+        status: "upcoming",
+        description: "AI is powerful, but usage-based pricing can make costs hard to predict, and that uncertainty slows down good projects. FinOps brings finance and IT together to plan, track, and optimize cloud spending. Join us live to learn how to forecast and control token costs for Cowork, so you can grow your AI use without surprise bills.",
+        registerUrl: "https://msit.events.teams.microsoft.com/event/msit.92db076d-5450-4547-9492-b9de8e8cdca2@72f988bf-86f1-41af-91ab-2d7cd011db47"
       },
       {
         title: "Protecting Tribal Data Sovereignty",
@@ -648,7 +787,7 @@
       const filtered = SESSIONS.filter((session) => {
         const matchesStatus = statusFilter === "all" || session.status === statusFilter;
         const matchesType = typeFilter === "all" || session.type === typeFilter;
-        const haystack = `${session.title} ${session.type} ${session.speakers} ${session.description}`.toLowerCase();
+        const haystack = `${session.title} ${session.type} ${session.description}`.toLowerCase();
         const matchesQuery = !query || haystack.includes(query);
         return matchesStatus && matchesType && matchesQuery;
       });
@@ -690,7 +829,7 @@
             <span class="pill">${session.type}</span>
           </div>
           <h3>${session.title}</h3>
-          <p class="date">${session.dateLabel} · ${session.speakers}</p>
+          <p class="date">${session.dateLabel}</p>
           <p class="desc">${session.description}</p>
           ${links ? `<div class="links">${links}</div>` : ""}
         `;
