@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webinar Series | Sessions</title>
+  <script>
+    (() => {
+      const param = new URLSearchParams(window.location.search).get("scoutTheme");
+      const theme =
+        param || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --ms-bg: #f3f2f1;
+      --ms-surface: #ffffff;
+      --ms-surface-soft: #faf9f8;
+      --ms-border: #edebe9;
+      --ms-border-strong: #c8c6c4;
+      --ms-text: #201f1e;
+      --ms-text-muted: #605e5c;
+      --ms-text-soft: #797775;
+      --ms-brand: #0078d4;
+      --ms-brand-hover: #106ebe;
+      --ms-brand-soft: rgba(0, 120, 212, 0.1);
+      --ms-success: #107c10;
+      --ms-link: #005a9e;
+      --ms-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      --ms-focus: rgba(0, 120, 212, 0.22);
+    }
+
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --ms-bg: #201f1e;
+      --ms-surface: #2d2c2b;
+      --ms-surface-soft: #252423;
+      --ms-border: #3b3a39;
+      --ms-border-strong: #605e5c;
+      --ms-text: #f3f2f1;
+      --ms-text-muted: #d2d0ce;
+      --ms-text-soft: #c8c6c4;
+      --ms-brand: #4da6ff;
+      --ms-brand-hover: #76bcff;
+      --ms-brand-soft: rgba(77, 166, 255, 0.16);
+      --ms-success: #92c353;
+      --ms-link: #8dc8ff;
+      --ms-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
+      --ms-focus: rgba(77, 166, 255, 0.24);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top right, rgba(0, 120, 212, 0.12), transparent 48%),
+        radial-gradient(circle at bottom left, rgba(16, 124, 16, 0.09), transparent 42%),
+        var(--ms-bg);
+      color: var(--ms-text);
+      font-family: "Segoe UI", Aptos, Calibri, -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.5;
+    }
+
+    .shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 20px 56px;
+    }
+
+    .topnav {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 0 0 14px;
+    }
+
+    .top-banner {
+      margin: 0 0 14px;
+      border: 1px solid var(--ms-border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--ms-shadow);
+      background: var(--ms-surface);
+    }
+
+    .top-banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .topnav a {
+      border: 1px solid var(--ms-border);
+      background: var(--ms-surface);
+      color: var(--ms-text-muted);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .topnav a:hover {
+      border-color: var(--ms-brand);
+      color: var(--ms-brand);
+      text-decoration: none;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(120deg, var(--ms-surface) 0%, var(--ms-surface-soft) 100%);
+      border: 1px solid var(--ms-border);
+      border-radius: 18px;
+      box-shadow: var(--ms-shadow);
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      right: -48px;
+      top: -48px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 120, 212, 0.18), rgba(0, 120, 212, 0));
+      pointer-events: none;
+    }
+
+    .ms-mark {
+      display: inline-grid;
+      grid-template-columns: repeat(2, 10px);
+      gap: 2px;
+      margin-bottom: 12px;
+    }
+
+    .ms-mark span:nth-child(1) { background: #f25022; }
+    .ms-mark span:nth-child(2) { background: #7fba00; }
+    .ms-mark span:nth-child(3) { background: #00a4ef; }
+    .ms-mark span:nth-child(4) { background: #ffb900; }
+    .ms-mark span {
+      width: 10px;
+      height: 10px;
+      border-radius: 1px;
+      display: block;
+    }
+
+    .kicker {
+      margin: 0 0 6px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--ms-brand);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.65rem, 2.9vw, 2.35rem);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--ms-text-muted);
+      max-width: 74ch;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr 180px 200px 200px;
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .input, .select {
+      width: 100%;
+      border: 1px solid var(--ms-border-strong);
+      border-radius: 10px;
+      background: var(--ms-surface);
+      color: var(--ms-text);
+      font: inherit;
+      padding: 10px 12px;
+      outline: none;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    }
+
+    .input:focus, .select:focus {
+      border-color: var(--ms-brand);
+      box-shadow: 0 0 0 3px var(--ms-focus);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 2px 0 12px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: 1.2rem;
+      letter-spacing: -0.01em;
+    }
+
+    .meta {
+      margin: 0;
+      color: var(--ms-text-soft);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .card {
+      position: relative;
+      background: var(--ms-surface);
+      border: 1px solid var(--ms-border);
+      border-left: 4px solid var(--ms-brand);
+      border-radius: 16px;
+      box-shadow: var(--ms-shadow);
+      padding: 14px 14px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 224px;
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    }
+
+    .card.type-modern-work { border-left-color: #107c10; }
+    .card.type-data-ai { border-left-color: #0078d4; }
+    .card.type-agentic-ai { border-left-color: #5c2e91; }
+    .card.type-security { border-left-color: #c23934; }
+    .card.type-infrastructure { border-left-color: #005a9e; }
+
+    .pill-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 2px 9px;
+      border: 1px solid var(--ms-border-strong);
+      color: var(--ms-text-muted);
+      background: var(--ms-surface-soft);
+    }
+
+    .pill.upcoming {
+      border-color: var(--ms-success);
+      color: var(--ms-success);
+      background: rgba(16, 124, 16, 0.1);
+    }
+
+    .pill.complete {
+      border-color: var(--ms-border-strong);
+      color: var(--ms-text-soft);
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 1.02rem;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+
+    .date {
+      margin: 0;
+      color: var(--ms-text-soft);
+      font-size: 0.88rem;
+    }
+
+    .desc {
+      margin: 0;
+      color: var(--ms-text-muted);
+      font-size: 0.92rem;
+      flex: 1;
+    }
+
+    .links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 2px;
+    }
+
+    .links a {
+      color: var(--ms-link);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.83rem;
+      border: 1px solid var(--ms-border-strong);
+      border-radius: 999px;
+      padding: 4px 10px;
+      background: var(--ms-surface-soft);
+    }
+
+    .links a:hover {
+      color: #ffffff;
+      background: var(--ms-brand);
+      border-color: var(--ms-brand);
+      text-decoration: none;
+    }
+
+    .empty {
+      border: 1px dashed var(--ms-border-strong);
+      background: var(--ms-surface);
+      color: var(--ms-text-muted);
+      border-radius: 16px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .suggest {
+      margin-top: 20px;
+      border-radius: 16px;
+      border: 1px solid var(--ms-border);
+      background: var(--ms-surface);
+      box-shadow: var(--ms-shadow);
+      padding: 16px;
+    }
+
+    .footer {
+      margin-top: 20px;
+      color: var(--ms-text-soft);
+      font-size: 0.84rem;
+    }
+
+    code {
+      font-family: Consolas, "Courier New", Courier, monospace;
+      background: var(--ms-surface-soft);
+      border: 1px solid var(--ms-border);
+      border-radius: 0.5rem;
+      padding: 2px 6px;
+    }
+
+    @media (max-width: 980px) {
+      .controls { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 700px) {
+      .controls { grid-template-columns: 1fr; }
+      .hero { padding: 20px; }
+      .section-head { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <main id="top" class="shell">
+    <div class="top-banner" aria-label="Webinar series banner">
+      <img src="./tribal-webinar-banner.png" alt="Your Nation, Your Priorities — Empowering Tribal Nations to achieve more">
+    </div>
+
+    <nav class="topnav" aria-label="Page sections">
+      <a href="#top">Top</a>
+      <a href="#sessions">Sessions</a>
+      <a href="#suggest-topic">Suggest a topic</a>
+    </nav>
+
+    <section class="hero">
+      <div class="ms-mark" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+      </div>
+      <p class="kicker">Webinar series</p>
+      <h1>Microsoft Webinar Series</h1>
+      <p class="lead">
+        Discover practical sessions across Modern Work, Data & AI, Security, and Infrastructure —
+        designed for real-world outcomes and easy action after every webinar.
+      </p>
+    </section>
+
+    <section aria-label="Session controls">
+      <div class="controls">
+        <input id="search" class="input" type="search" placeholder="Search sessions by title, topic, or speaker">
+        <select id="status" class="select" aria-label="Filter by status">
+          <option value="all">All sessions</option>
+          <option value="upcoming">Upcoming</option>
+          <option value="complete">Past sessions</option>
+        </select>
+        <select id="typeFilter" class="select" aria-label="Filter by type">
+          <option value="all">All types</option>
+        </select>
+        <select id="sortBy" class="select" aria-label="Sort sessions">
+          <option value="date-asc">Date (oldest first)</option>
+          <option value="date-desc">Date (newest first)</option>
+          <option value="type-asc">Type (A-Z)</option>
+          <option value="title-asc">Title (A-Z)</option>
+        </select>
+      </div>
+    </section>
+
+    <section id="sessions" aria-label="Sessions and notes">
+      <div class="section-head">
+        <h2>Sessions & notes</h2>
+        <p id="resultMeta" class="meta"></p>
+      </div>
+      <div id="sessionGrid" class="grid"></div>
+      <div id="emptyState" class="empty" hidden>No sessions match that search. Try another term or choose “All sessions.”</div>
+    </section>
+
+    <section id="suggest-topic" class="suggest" aria-label="Suggest a topic">
+      <h2>What would your audience like you to cover next?</h2>
+      <p class="lead">Collect topic ideas and shape future sessions based on community demand.</p>
+    </section>
+
+    <p class="footer">
+      Quick edit: update the <code>SESSIONS</code> list in this file with your real dates, links, and presenters.
+    </p>
+  </main>
+
+  <script>
+    const SESSIONS = [
+      {
+        title: "Microsoft 365 E7/G7 — The Enterprise Suite That Does More",
+        type: "Modern Work",
+        speakers: "Microsoft",
+        dateLabel: "Wednesday, November 4, 2026 · 12:00 – 1:00 PM CT",
+        dateISO: "2026-11-04T12:00:00-06:00",
+        status: "complete",
+        description: "Microsoft 365 E7 brings productivity, security, compliance, and AI into one unified plan, replacing patchwork point solutions and reducing IT complexity and cost.",
+        recordingUrl: "https://livesend.microsoft.com/i/yn92VK1BxMN3z9___QF4cOXwG0D7ZEZb9Wm3OZvD5sp6sBZiezo6ZohcF8GCaEheq2j1lc6n0dNMQjsQZ5THddL13TcjLkLvR___JqAjLPLUSSIGNA___Io5cHEwKPLUSSIGNscmYf9oVdk3tW6A",
+        onePagerUrl: "./downloads/m365-e7-g7-one-pager.pdf"
+      },
+      {
+        title: "For GCC Customers — G7: The Enterprise Suite That Does More",
+        type: "Modern Work",
+        speakers: "Microsoft",
+        dateLabel: "Wednesday, November 4, 2026 · 1:00 – 2:00 PM CT",
+        dateISO: "2026-11-04T13:00:00-06:00",
+        status: "complete",
+        description: "A focused G7 session for government, Tribal, and sovereignty-oriented organizations, covering secure collaboration, compliance, identity, device protection, and data governance.",
+        recordingUrl: "https://livesend.microsoft.com/i/yn92VK1BxMN3z9___QF4cOXwG0D7ZEZb9Wm3OZvD5sp6uLgMmKswbVVdC5wQZ4Hrwl4RBwelhkZrls5ZLPrPLUSSIGN4LrsTTynYS9evwoofvG09Vjz7d5BLS4C2JD6CSFpDhoncl",
+        onePagerUrl: "./downloads/m365-e7-g7-one-pager.pdf"
+      },
+      {
+        title: "Unify Your Data and AI with Microsoft Fabric",
+        type: "Data & AI",
+        speakers: "Microsoft",
+        dateLabel: "Wednesday, November 11, 2026 · 12:00 – 1:00 PM CT",
+        dateISO: "2026-11-11T12:00:00-06:00",
+        status: "complete",
+        description: "See how Microsoft Fabric unifies data engineering, warehousing, data science, real-time intelligence, and BI on OneLake with Copilot built in.",
+        recordingUrl: "https://livesend.microsoft.com/i/yn92VK1BxMN3z9___QF4cOXwG0D7ZEZb9Wm3OZvD5sp6u___fBCOAVpqZ9YoLuZHSeBWFpOcFTaYbZMhUs3kazCpAUPLUSSIGNlHTayFgmVfseuaJ9il9VPLUSSIGNO1k37E9xI996tmoi8QGZ",
+        onePagerUrl: "./downloads/fabric-one-pager.pdf",
+        deckUrl: "./downloads/fabric-deck.pdf"
+      },
+      {
+        title: "Build Your Own AI Agents with Microsoft Copilot Studio",
+        type: "Agentic AI",
+        speakers: "Microsoft",
+        dateLabel: "Wednesday, November 18, 2026 · 12:00 – 1:00 PM CT",
+        dateISO: "2026-11-18T12:00:00-06:00",
+        status: "complete",
+        description: "Learn how to create, customize, and deploy low-code AI agents grounded in your data and connected to your systems, with governance at scale.",
+        recordingUrl: "https://livesend.microsoft.com/i/yn92VK1BxMN3z9___QF4cOXwG0D7ZEZb9Wm3OZvD5sp6uLgMmKswbVVdC5wQZ4HrwlvFJ2AxasSqdcnUPLUSSIGNaxRk5aFgODkNN4kon4pHEY4gHWvgZSeWLvPLUSSIGN1CwQhEXi3YbKYS",
+        onePagerUrl: "./downloads/copilot-studio-one-pager.pdf",
+        deckUrl: "./downloads/copilot-studio-deck.pdf"
+      },
+      {
+        title: "Build Custom AI Solutions on Azure AI Foundry",
+        type: "Data & AI",
+        speakers: "Microsoft",
+        dateLabel: "Wednesday, December 2, 2026 · 12:00 – 1:00 PM CT",
+        dateISO: "2026-12-02T12:00:00-06:00",
+        status: "upcoming",
+        description: "Explore how Azure AI Foundry helps teams design, customize, and deploy enterprise-grade generative AI apps and agents with responsible AI controls."
+      },
+      {
+        title: "Strengthen Your Security Foundation with Zero Trust",
+        type: "Security",
+        speakers: "Microsoft",
+        dateLabel: "Wednesday, December 9, 2026 · 12:00 – 1:00 PM CT",
+        dateISO: "2026-12-09T12:00:00-06:00",
+        status: "upcoming",
+        description: "Adopt continuous verification, least-privilege access, and stronger response readiness to protect identities, devices, apps, workloads, and data."
+      },
+      {
+        title: "Manage Anything, Anywhere with Azure Arc",
+        type: "Infrastructure",
+        speakers: "Microsoft",
+        dateLabel: "Wednesday, December 16, 2026 · 12:00 – 1:00 PM CT",
+        dateISO: "2026-12-16T12:00:00-06:00",
+        status: "upcoming",
+        description: "See how Azure Arc extends Azure governance, operations, and security across hybrid and multicloud environments through one control plane."
+      }
+    ];
+
+    const grid = document.getElementById("sessionGrid");
+    const emptyState = document.getElementById("emptyState");
+    const resultMeta = document.getElementById("resultMeta");
+    const searchInput = document.getElementById("search");
+    const statusSelect = document.getElementById("status");
+    const typeFilterSelect = document.getElementById("typeFilter");
+    const sortBySelect = document.getElementById("sortBy");
+
+    function toTypeClass(type) {
+      return `type-${type.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")}`;
+    }
+
+    function populateTypes() {
+      const types = [...new Set(SESSIONS.map((session) => session.type))].sort((a, b) => a.localeCompare(b));
+      for (const type of types) {
+        const option = document.createElement("option");
+        option.value = type;
+        option.textContent = type;
+        typeFilterSelect.appendChild(option);
+      }
+    }
+
+    function renderSessions() {
+      const query = searchInput.value.trim().toLowerCase();
+      const statusFilter = statusSelect.value;
+      const typeFilter = typeFilterSelect.value;
+      const sortBy = sortBySelect.value;
+
+      const filtered = SESSIONS.filter((session) => {
+        const matchesStatus = statusFilter === "all" || session.status === statusFilter;
+        const matchesType = typeFilter === "all" || session.type === typeFilter;
+        const haystack = `${session.title} ${session.type} ${session.speakers} ${session.description}`.toLowerCase();
+        const matchesQuery = !query || haystack.includes(query);
+        return matchesStatus && matchesType && matchesQuery;
+      });
+
+      const sorted = [...filtered].sort((a, b) => {
+        if (sortBy === "date-asc") {
+          return new Date(a.dateISO) - new Date(b.dateISO);
+        }
+        if (sortBy === "type-asc") {
+          return a.type.localeCompare(b.type) || a.title.localeCompare(b.title);
+        }
+        if (sortBy === "title-asc") {
+          return a.title.localeCompare(b.title);
+        }
+        return new Date(b.dateISO) - new Date(a.dateISO);
+      });
+
+      grid.innerHTML = "";
+      emptyState.hidden = sorted.length > 0;
+      resultMeta.textContent = `${sorted.length} session${sorted.length === 1 ? "" : "s"}`;
+
+      for (const session of sorted) {
+        const card = document.createElement("article");
+        card.className = `card ${toTypeClass(session.type)}`;
+
+        const statusClass = session.status === "upcoming" ? "upcoming" : "complete";
+        const statusText = session.status === "upcoming" ? "Upcoming" : "Past session";
+
+        const links = [
+          session.recordingUrl ? `<a href="${session.recordingUrl}" target="_blank" rel="noopener noreferrer">Recording</a>` : "",
+          session.onePagerUrl ? `<a href="${session.onePagerUrl}" target="_blank" rel="noopener noreferrer">One-Pager</a>` : "",
+          session.deckUrl ? `<a href="${session.deckUrl}" target="_blank" rel="noopener noreferrer">Deck</a>` : ""
+        ].filter(Boolean).join("");
+
+        card.innerHTML = `
+          <div class="pill-row">
+            <span class="pill ${statusClass}">${statusText}</span>
+            <span class="pill">${session.type}</span>
+          </div>
+          <h3>${session.title}</h3>
+          <p class="date">${session.dateLabel} · ${session.speakers}</p>
+          <p class="desc">${session.description}</p>
+          ${links ? `<div class="links">${links}</div>` : ""}
+        `;
+
+        grid.appendChild(card);
+      }
+    }
+
+    populateTypes();
+    searchInput.addEventListener("input", renderSessions);
+    statusSelect.addEventListener("change", renderSessions);
+    typeFilterSelect.addEventListener("change", renderSessions);
+    sortBySelect.addEventListener("change", renderSessions);
+    renderSessions();
+  </script>
+</body>
+</html>
